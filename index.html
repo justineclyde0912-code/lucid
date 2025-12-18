@@ -1,136 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lucid Hub</title>
-
-<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
 <style>
-* {
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{
+  margin:0;min-height:100vh;
+  /* LOCAL background image (UPLOAD THIS FILE) */
+  background:url('bg.jpg') center/cover no-repeat fixed;
+  display:flex;align-items:center;justify-content:center;color:#fff;
 }
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background-image: url("https://wallpapercave.com/wp/wp11599145.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+.overlay{
+  background:rgba(0,0,0,.75);padding:26px;border-radius:22px;
+  width:100%;max-width:420px;text-align:center;
+  box-shadow:0 0 40px rgba(0,0,0,.9)
 }
-
-.overlay {
-  background: rgba(0,0,0,0.78);
-  padding: 25px;
-  border-radius: 20px;
-  width: 100%;
-  max-width: 420px;
-  text-align: center;
-  box-shadow: 0 0 30px rgba(0,0,0,0.9);
+h1{margin:6px 0}p{font-size:14px;opacity:.9}
+.links{display:grid;gap:14px;margin-top:20px}
+.btn{
+  position:relative;display:flex;align-items:center;gap:12px;
+  padding:14px 18px;border-radius:16px;text-decoration:none;color:#fff;
+  font-size:16px;font-weight:700;overflow:hidden;
 }
-
-h1 {
-  margin-bottom: 6px;
+/* GLOW ANIMATION */
+.btn::before{
+  content:'';position:absolute;inset:-2px;border-radius:18px;
+  background:linear-gradient(90deg,#00e5ff,#7c4dff,#00e5ff);
+  filter:blur(8px);opacity:.7;animation:glow 3s linear infinite;
 }
-
-p {
-  font-size: 14px;
-  opacity: 0.85;
-}
-
-.links {
-  display: grid;
-  gap: 14px;
-  margin-top: 20px;
-}
-
-.btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-  border-radius: 14px;
-  text-decoration: none;
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  transition: 0.2s;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(255,255,255,0.3);
-}
-
-.roblox { background: #111; }
-.tiktok { background: #000; }
-.discord { background: #5865F2; }
-
-.icon {
-  width: 22px;
-  height: 22px;
-}
-
-.note {
-  margin-top: 15px;
-  font-size: 13px;
-  opacity: 0.9;
-}
-
-.music {
-  margin-top: 18px;
+.btn span{position:relative;z-index:1}
+.btn:hover{transform:scale(1.05)}
+@keyframes glow{0%{background-position:0%}100%{background-position:200%}}
+.roblox{background:#111}
+.tiktok{background:#000}
+.discord{background:#5865F2}
+.icon{width:22px;height:22px}
+.note{margin-top:14px;font-size:13px;opacity:.9}
+.music{margin-top:18px}
+.music button{
+  padding:12px 18px;border-radius:12px;border:none;cursor:pointer;
+  font-size:15px;font-weight:700
 }
 </style>
 </head>
-
 <body>
-
 <div class="overlay">
   <h1>Lucid Hub</h1>
-  <p>Support by following & joining 🔥</p>
-
-  <div class="links">
-
-    <!-- ROBLOX (FIXED ICON) -->
+  <p>Support by following & joining 🔥</p>  <div class="links">
     <a class="btn roblox" href="https://www.roblox.com/users/8875677502/profile" target="_blank">
-      <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg">
-      Follow on Roblox
+      <span><img class="icon" src="roblox.svg"> Follow on Roblox</span>
     </a>
-
-    <!-- TIKTOK -->
     <a class="btn tiktok" href="https://www.tiktok.com/@clydxz7" target="_blank">
-      <i class="fa-brands fa-tiktok"></i>
-      Follow on TikTok
+      <span><i class="fa-brands fa-tiktok"></i> Follow on TikTok</span>
     </a>
-
-    <!-- DISCORD -->
     <a class="btn discord" href="https://discord.gg/maFySQAEM" target="_blank">
-      <i class="fa-brands fa-discord"></i>
-      Join Discord Server
+      <span><i class="fa-brands fa-discord"></i> Join Discord Server</span>
     </a>
-
+  </div>  <div class="note">Make sure you follow Roblox & TikTok so I can upload more content 💙</div>  <!-- CUSTOM MUSIC BUTTON (LOCAL FILE) -->  <div class="music">
+    <audio id="bgMusic" src="lofi.mp3" preload="auto"></audio>
+    <button onclick="toggleMusic()">▶ Play / ⏸ Pause Music</button>
   </div>
-
-  <div class="note">
-    Make sure you follow Roblox & TikTok so I can upload more content 💙
-  </div>
-
-  <!-- MUSIC (FIXED) -->
-  <div class="music">
-    <audio controls loop>
-      <source src="lofi.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-
 </div>
-
+<script>
+const m=document.getElementById('bgMusic');
+function toggleMusic(){ if(m.paused){ m.play(); } else { m.pause(); } }
+</script>
 </body>
 </html>
