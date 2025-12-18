@@ -1,66 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Links</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucid Links</title>  <!-- Icons -->  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">  <style>
+    * { box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
+
     body {
       margin: 0;
-      height: 100vh;
-      background: #0b0b10;
+      min-height: 100vh;
+      background: url('gojo.jpg') center/cover no-repeat fixed;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: Arial, sans-serif;
       color: white;
     }
-    .box {
-      background: #15151c;
+
+    .overlay {
+      background: rgba(0,0,0,0.75);
       padding: 24px;
-      border-radius: 16px;
-      width: 90%;
-      max-width: 360px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 420px;
       text-align: center;
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
     }
-    h1 {
-      margin-bottom: 8px;
+
+    h1 { margin-bottom: 6px; }
+    p { font-size: 14px; opacity: 0.85; }
+
+    .links {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 20px;
     }
-    p {
-      font-size: 13px;
-      opacity: 0.7;
-      margin-bottom: 20px;
-    }
-    a {
-      display: block;
-      padding: 16px;
-      margin: 12px 0;
-      border-radius: 12px;
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 14px;
       text-decoration: none;
       color: white;
-      font-weight: bold;
+      font-size: 16px;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
+
+    .btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+
+    .roblox { background: #111; }
+    .tiktok { background: #010101; }
     .discord { background: #5865F2; }
-    .roblox { background: #ff4757; }
-    .tiktok { background: #000000; border: 1px solid #2a2a2a; }
-  </style>
-</head>
-<body>
-  <div class="box">
-    <h1>My Profiles</h1>
-    <p>Tap a button</p>
 
-    <a class="discord" href="https://discord.gg/QXzGrQrZg" target="_blank">
-      Discord Server
-    </a>
+    .btn i { font-size: 22px; }
 
-    <a class="roblox" href="https://www.roblox.com/users/8875677502/profile" target="_blank">
-      Roblox Profile
-    </a>
+    .note {
+      margin-top: 16px;
+      font-size: 13px;
+      opacity: 0.8;
+    }
 
-    <a class="tiktok" href="https://www.tiktok.com/@clydxz7?_r=1&_t=ZS-92JsEPOMo8P" target="_blank">
-      TikTok Profile
-    </a>
-  </div>
-</body>
+    .music {
+      margin-top: 18px;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    footer {
+      margin-top: 12px;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+  </style></head>
+<body>  <div class="overlay">
+    <h1>Lucid Hub</h1>
+    <p>Support by following & joining 🔥</p><div class="links">
+  <a class="btn roblox" href="https://www.roblox.com/users/8875677502/profile" target="_blank">
+    <i class="fa-solid fa-cube"></i>
+    Follow on Roblox
+  </a>
+
+  <a class="btn tiktok" href="https://www.tiktok.com/@clydxz7" target="_blank">
+    <i class="fa-brands fa-tiktok"></i>
+    Follow on TikTok
+  </a>
+
+  <a class="btn discord" href="https://discord.gg/maFySQAEM" target="_blank">
+    <i class="fa-brands fa-discord"></i>
+    Join Discord Server
+  </a>
+</div>
+
+<div class="note">
+  Make sure you follow Roblox & TikTok so I can upload more content 💙
+</div>
+
+<div class="music">
+  <p>Background Music</p>
+  <audio controls loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+</div>
+
+<footer>
+  Entertainment purposes only
+</footer>
+
+  </div></body>
 </html>
