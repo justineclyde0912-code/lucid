@@ -19,98 +19,124 @@ body {
   align-items: center;
   justify-content: center;
   color: white;
+  overflow: hidden;
 }
 
-/* dark overlay */
-.overlay {
+/* DARK CARD */
+.container {
   background: rgba(0,0,0,0.75);
-  padding: 24px;
+  padding: 25px;
   border-radius: 20px;
-  width: 100%;
+  width: 90%;
   max-width: 420px;
   text-align: center;
   box-shadow: 0 0 30px rgba(0,0,0,0.8);
 }
 
 h1 {
-  margin-bottom: 6px;
+  margin: 0;
+  font-size: 32px;
 }
 
-p {
-  font-size: 14px;
+.subtitle {
   opacity: 0.85;
+  margin-bottom: 20px;
 }
 
-/* buttons */
+/* BUTTONS */
 .links {
   display: grid;
   gap: 14px;
-  margin-top: 20px;
 }
 
 .btn {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 18px;
+  gap: 12px;
+  padding: 14px;
   border-radius: 14px;
   text-decoration: none;
   color: white;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: bold;
   background: #000;
 }
 
 .btn img {
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
 }
 
 .discord {
   background: #5865F2;
 }
 
-/* music */
-.music {
+/* MUSIC */
+.music-box {
   margin-top: 18px;
 }
 
-audio {
-  width: 100%;
+/* SNOW EFFECT */
+.snow {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 14px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="overlay">
+<div class="container">
   <h1>Lucid Hub</h1>
-  <p>Support by following & joining 🔥</p>
+  <div class="subtitle">Support by following & joining 🔥</div>
 
   <div class="links">
     <a class="btn" href="https://www.roblox.com/users/8875677502/profile" target="_blank">
-      <img src="roblox.png">
-      Follow on Roblox
+      <img src="roblox.png"> Follow on Roblox
     </a>
 
     <a class="btn" href="https://www.tiktok.com/@clydxz7" target="_blank">
-      <img src="tiktok.png">
-      Follow on TikTok
+      <img src="tiktok.png"> Follow on TikTok
     </a>
 
-    <a class="btn discord" href="https://discord.gg/maFySQAEM" target="_blank">
-      <img src="discord.png">
-      Join Discord Server
+    <a class="btn discord" href="https://discord.gg/nFX8Npc9a" target="_blank">
+      <img src="discord.png"> Join Discord Server
     </a>
   </div>
 
-  <div class="music">
-    <p>Background Music</p>
-    <audio controls autoplay loop>
+  <div class="music-box">
+    <audio id="bgMusic" controls loop>
       <source src="music.mp3" type="audio/mpeg">
     </audio>
   </div>
 </div>
+
+<!-- SNOW SCRIPT -->
+<script>
+function createSnow() {
+  const snow = document.createElement("div");
+  snow.className = "snow";
+  snow.innerText = "❄";
+  snow.style.left = Math.random() * window.innerWidth + "px";
+  snow.style.animationDuration = (Math.random() * 3 + 2) + "s";
+  document.body.appendChild(snow);
+
+  setTimeout(() => {
+    snow.remove();
+  }, 5000);
+}
+
+setInterval(createSnow, 200);
+</script>
 
 </body>
 </html>
