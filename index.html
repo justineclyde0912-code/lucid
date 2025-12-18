@@ -1,71 +1,231 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lucid Hub</title>
+
+<!-- ICONS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
 <style>
-*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+*{
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif
+}
+
 body{
-  margin:0;min-height:100vh;
-  /* LOCAL background image (UPLOAD THIS FILE) */
+  margin:0;
+  min-height:100vh;
   background:url('bg.jpg') center/cover no-repeat fixed;
-  display:flex;align-items:center;justify-content:center;color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  overflow:hidden;
 }
+
+/* PARTICLES */
+canvas{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+}
+
 .overlay{
-  background:rgba(0,0,0,.75);padding:26px;border-radius:22px;
-  width:100%;max-width:420px;text-align:center;
-  box-shadow:0 0 40px rgba(0,0,0,.9)
+  position:relative;
+  z-index:2;
+  background:rgba(0,0,0,.75);
+  padding:26px;
+  border-radius:22px;
+  width:100%;
+  max-width:420px;
+  text-align:center;
+  box-shadow:0 0 40px rgba(0,0,0,.9);
 }
-h1{margin:6px 0}p{font-size:14px;opacity:.9}
-.links{display:grid;gap:14px;margin-top:20px}
+
+h1{margin:6px 0}
+p{font-size:14px;opacity:.9}
+
+.links{
+  display:grid;
+  gap:14px;
+  margin-top:20px;
+}
+
+/* BUTTONS */
 .btn{
-  position:relative;display:flex;align-items:center;gap:12px;
-  padding:14px 18px;border-radius:16px;text-decoration:none;color:#fff;
-  font-size:16px;font-weight:700;overflow:hidden;
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 18px;
+  border-radius:16px;
+  text-decoration:none;
+  color:#fff;
+  font-size:16px;
+  font-weight:700;
+  overflow:hidden;
 }
-/* GLOW ANIMATION */
+
+/* GLOW EFFECT */
 .btn::before{
-  content:'';position:absolute;inset:-2px;border-radius:18px;
-  background:linear-gradient(90deg,#00e5ff,#7c4dff,#00e5ff);
-  filter:blur(8px);opacity:.7;animation:glow 3s linear infinite;
+  content:'';
+  position:absolute;
+  inset:-2px;
+  border-radius:18px;
+  background:linear-gradient(
+    90deg,
+    #00e5ff,
+    #7c4dff,
+    #00e5ff
+  );
+  filter:blur(8px);
+  opacity:.85;
+  animation:glow 3s linear infinite;
 }
-.btn span{position:relative;z-index:1}
-.btn:hover{transform:scale(1.05)}
-@keyframes glow{0%{background-position:0%}100%{background-position:200%}}
+
+@keyframes glow{
+  0%{background-position:0%}
+  100%{background-position:200%}
+}
+
+.btn span{
+  position:relative;
+  z-index:1;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
+
 .roblox{background:#111}
 .tiktok{background:#000}
 .discord{background:#5865F2}
-.icon{width:22px;height:22px}
-.note{margin-top:14px;font-size:13px;opacity:.9}
-.music{margin-top:18px}
+
+.icon{
+  width:22px;
+  height:22px;
+}
+
+.note{
+  margin-top:14px;
+  font-size:13px;
+  opacity:.9;
+}
+
+/* MUSIC */
+.music{
+  margin-top:18px;
+}
+
 .music button{
-  padding:12px 18px;border-radius:12px;border:none;cursor:pointer;
-  font-size:15px;font-weight:700
+  padding:12px 18px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.volume{
+  width:100%;
+  margin-top:10px;
 }
 </style>
 </head>
+
 <body>
+
+<canvas id="particles"></canvas>
+
 <div class="overlay">
   <h1>Lucid Hub</h1>
-  <p>Support by following & joining 🔥</p>  <div class="links">
+  <p>Support by following & joining 🔥</p>
+
+  <div class="links">
     <a class="btn roblox" href="https://www.roblox.com/users/8875677502/profile" target="_blank">
-      <span><img class="icon" src="roblox.svg"> Follow on Roblox</span>
+      <span>
+        <img class="icon" src="roblox.svg">
+        Follow on Roblox
+      </span>
     </a>
+
     <a class="btn tiktok" href="https://www.tiktok.com/@clydxz7" target="_blank">
-      <span><i class="fa-brands fa-tiktok"></i> Follow on TikTok</span>
+      <span>
+        <i class="fa-brands fa-tiktok"></i>
+        Follow on TikTok
+      </span>
     </a>
+
     <a class="btn discord" href="https://discord.gg/maFySQAEM" target="_blank">
-      <span><i class="fa-brands fa-discord"></i> Join Discord Server</span>
+      <span>
+        <i class="fa-brands fa-discord"></i>
+        Join Discord Server
+      </span>
     </a>
-  </div>  <div class="note">Make sure you follow Roblox & TikTok so I can upload more content 💙</div>  <!-- CUSTOM MUSIC BUTTON (LOCAL FILE) -->  <div class="music">
+  </div>
+
+  <div class="note">
+    Make sure you follow Roblox & TikTok so I can upload more content 💙
+  </div>
+
+  <!-- MUSIC -->
+  <div class="music">
     <audio id="bgMusic" src="lofi.mp3" preload="auto"></audio>
-    <button onclick="toggleMusic()">▶ Play / ⏸ Pause Music</button>
+    <button onclick="toggleMusic()">▶ Play / ⏸ Pause</button>
+    <input class="volume" type="range" min="0" max="1" step="0.01" value="0.5"
+           oninput="setVol(this.value)">
   </div>
 </div>
+
 <script>
-const m=document.getElementById('bgMusic');
-function toggleMusic(){ if(m.paused){ m.play(); } else { m.pause(); } }
+/* MUSIC */
+const music = document.getElementById("bgMusic");
+function toggleMusic(){
+  if(music.paused){
+    music.play();
+  }else{
+    music.pause();
+  }
+}
+function setVol(v){
+  music.volume = v;
+}
+
+/* PARTICLES */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+}
+resize();
+addEventListener("resize", resize);
+
+let particles = Array.from({length:60}, () => ({
+  x: Math.random()*canvas.width,
+  y: Math.random()*canvas.height,
+  r: Math.random()*2+1,
+  s: Math.random()*0.6+0.2
+}));
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="rgba(255,255,255,.7)";
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+    p.y += p.s;
+    if(p.y > canvas.height) p.y = 0;
+  });
+  requestAnimationFrame(animate);
+}
+animate();
 </script>
+
 </body>
 </html>
