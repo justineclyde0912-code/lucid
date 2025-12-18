@@ -14,96 +14,74 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: url("background.jpg") center / cover no-repeat fixed;
+  background: url('background.jpg') center/cover no-repeat fixed;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   color: white;
-  overflow: hidden;
 }
 
-/* SNOW */
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
+/* dark overlay */
 .overlay {
-  position: relative;
-  z-index: 2;
   background: rgba(0,0,0,0.75);
-  width: 100%;
-  max-width: 420px;
   padding: 24px;
   border-radius: 20px;
+  width: 100%;
+  max-width: 420px;
   text-align: center;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
 }
 
-h1 { margin-bottom: 6px; }
-p { font-size: 14px; opacity: 0.85; }
+h1 {
+  margin-bottom: 6px;
+}
 
+p {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* buttons */
 .links {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 14px;
+  margin-top: 20px;
 }
 
 .btn {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   padding: 14px 18px;
   border-radius: 14px;
   text-decoration: none;
   color: white;
   font-size: 16px;
   font-weight: 600;
-  background: black;
+  background: #000;
 }
 
 .btn img {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
 }
 
 .discord {
   background: #5865F2;
 }
 
-/* MUSIC UI */
-.music-control {
+/* music */
+.music {
   margin-top: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
 }
 
-.sound-btn {
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 14px;
-  cursor: pointer;
-  font-size: 16px;
+audio {
+  width: 100%;
 }
-
-.volume {
-  width: 90px;
-  display: none;
-}
-
 </style>
 </head>
 
 <body>
-
-<canvas id="snow"></canvas>
 
 <div class="overlay">
   <h1>Lucid Hub</h1>
@@ -111,99 +89,28 @@ p { font-size: 14px; opacity: 0.85; }
 
   <div class="links">
     <a class="btn" href="https://www.roblox.com/users/8875677502/profile" target="_blank">
-      <img src="roblox.png"> Follow on Roblox
+      <img src="roblox.png">
+      Follow on Roblox
     </a>
 
     <a class="btn" href="https://www.tiktok.com/@clydxz7" target="_blank">
-      <img src="tiktok.png"> Follow on TikTok
+      <img src="tiktok.png">
+      Follow on TikTok
     </a>
 
     <a class="btn discord" href="https://discord.gg/maFySQAEM" target="_blank">
-      <img src="discord.png"> Join Discord Server
+      <img src="discord.png">
+      Join Discord Server
     </a>
   </div>
 
-  <!-- MUSIC -->
-  <div class="music-control">
-    <button class="sound-btn" id="soundBtn">🔇</button>
-    <input type="range" class="volume" id="volume" min="0" max="1" step="0.01">
+  <div class="music">
+    <p>Background Music</p>
+    <audio controls autoplay loop>
+      <source src="music.mp3" type="audio/mpeg">
+    </audio>
   </div>
 </div>
-
-<audio id="bgm" src="music.mp3" loop autoplay muted></audio>
-
-<script>
-/* MUSIC */
-const music = document.getElementById("bgm");
-const btn = document.getElementById("soundBtn");
-const volume = document.getElementById("volume");
-
-music.volume = 0.5;
-volume.value = 0.5;
-
-btn.onclick = () => {
-  if (music.muted) {
-    music.muted = false;
-    music.play();
-    btn.textContent = "🔊";
-    volume.style.display = "block";
-  } else {
-    music.muted = true;
-    btn.textContent = "🔇";
-    volume.style.display = "none";
-  }
-};
-
-volume.oninput = () => {
-  music.volume = volume.value;
-};
-
-/* SNOW EFFECT */
-const canvas = document.getElementById("snow");
-const ctx = canvas.getContext("2d");
-
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
-
-let snowflakes = [];
-for (let i = 0; i < 80; i++) {
-  snowflakes.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 3 + 1,
-    d: Math.random() + 1
-  });
-}
-
-let angle = 0;
-function drawSnow() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "rgba(255,255,255,0.8)";
-  ctx.beginPath();
-
-  for (let f of snowflakes) {
-    ctx.moveTo(f.x, f.y);
-    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-  }
-  ctx.fill();
-
-  angle += 0.01;
-  for (let f of snowflakes) {
-    f.y += Math.pow(f.d, 2) + 1;
-    f.x += Math.sin(angle) * 0.5;
-    if (f.y > canvas.height) {
-      f.y = 0;
-      f.x = Math.random() * canvas.width;
-    }
-  }
-}
-
-setInterval(drawSnow, 33);
-</script>
 
 </body>
 </html>
